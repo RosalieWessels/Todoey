@@ -12,9 +12,15 @@ class ToDoListViewController: UITableViewController {
     
     var itemArray = ["Find the Elder Wand", "Find the Invisibility Cloak", "Find the Immortal Stone"]
     
+    let defaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        if let items = defaults.array(forKey: "ToDoListArray") as? [String] {
+            itemArray = items
+        }
         
     }
 
@@ -61,6 +67,8 @@ class ToDoListViewController: UITableViewController {
             print("\(String(describing: textField.text)) needs to be added")
             if textField.text != "" {
                 self.itemArray.append(textField.text!)
+                
+                self.defaults.set(self.itemArray, forKey: "ToDoListArray")
             }
             self.tableView.reloadData()
             
