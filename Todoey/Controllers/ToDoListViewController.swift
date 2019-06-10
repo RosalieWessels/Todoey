@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ToDoListViewController: UITableViewController {
+class ToDoListViewController: SwipeTableViewController {
     
     var toDoItems : Results<Item>?
     
@@ -41,17 +41,33 @@ class ToDoListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+//
+//        if let item = toDoItems?[indexPath.row] {
+//            cell.textLabel?.text = item.title
+//
+//            //ternary operator
+//            cell.accessoryType = item.done ? .checkmark : .none
+//        } else {
+//            cell.textLabel?.text = "No Items Added"
+//        }
+//
+//
+//        return cell
+        
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
+//        cell.textLabel?.text = toDoItems?[indexPath.row].title ?? "No Items added yet"
         
         if let item = toDoItems?[indexPath.row] {
             cell.textLabel?.text = item.title
-            
+
             //ternary operator
             cell.accessoryType = item.done ? .checkmark : .none
         } else {
             cell.textLabel?.text = "No Items Added"
         }
-        
+
         
         return cell
     }
@@ -122,6 +138,7 @@ class ToDoListViewController: UITableViewController {
         toDoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
         tableView.reloadData()
     }
+    
 
 }
 

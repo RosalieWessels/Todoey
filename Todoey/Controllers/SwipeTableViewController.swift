@@ -34,19 +34,7 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
             // handle action by updating model with deletion
             
             print("Delete Cell")
-//            let selectedCategoryDelete = self.categoryArray?[indexPath.row]
-//
-//            if selectedCategoryDelete != nil {
-//                do {
-//                    try self.realm.write {
-//                        self.realm.delete(selectedCategoryDelete!)
-//                    }
-//                }
-//                catch {
-//                    print("error occured while deleting category : \(error)")
-//                }
-//            }
-//            tableView.reloadData()
+            self.updateModel(at: indexPath)
             
         }
         
@@ -63,5 +51,7 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         return options
     }
     
-
+    func updateModel(at indexPath: IndexPath) {
+        //update our data model
+    }
 }
